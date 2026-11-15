@@ -99,8 +99,20 @@ function pluginRangosImpuestos(grupos: { desde: number; hasta: number; intermedi
     },
     // El hover se actualiza desde options.onHover, más abajo.
     afterEvent(chart, args) {
-      const active = chart.getActiveElements();
-      const next = active.length ? active[0].index : null;
+      const xPointer = args.event.x;
+      let next: number | null = null;
+      if (typeof xPointer === "number") {
+        let distanciaMinima = 10;
+        for (const grupo of grupos) {
+          for (const indice of grupo.intermedios) {
+            const distancia = Math.abs(chart.scales.x.getPixelForValue(indice) - xPointer);
+            if (distancia <= distanciaMinima) {
+              distanciaMinima = distancia;
+              next = indice;
+            }
+          }
+        }
+      }
       if (next !== indiceActivo) {
         indiceActivo = next;
         args.changed = true;
