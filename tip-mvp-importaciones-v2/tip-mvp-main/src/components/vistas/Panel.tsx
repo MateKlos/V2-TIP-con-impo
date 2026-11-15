@@ -73,6 +73,8 @@ export function VistaPanel() {
         </div>
       </div>
 
+      <GraficoRangosImpuestos movimientos={datos.movimientos} />
+
       <div className="tarjeta mt-3.5">
         <h2 className="subtitulo">Próximos movimientos</h2>
         {proximos.length === 0 ? (
