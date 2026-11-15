@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ListaAlertas } from "@/components/Alertas";
 import { useDatos } from "@/components/DatosProvider";
 import { GraficoProyeccion } from "@/components/Graficos";
-import { GraficoRangosImpuestos } from "@/components/GraficoRangosImpuestos";
 import { BotonEjemplo } from "@/components/BotonEjemplo";
 import { Cargando } from "@/components/Cargando";
 import { HORIZONTE } from "@/lib/tesoreria/proyeccion";
@@ -62,7 +61,7 @@ export function VistaPanel() {
       <div className="mt-3.5 grid gap-3.5 lg:grid-cols-[1.6fr_1fr]">
         <div className="tarjeta min-w-0">
           <h2 className="subtitulo">Flujo de caja proyectado · próximos {HORIZONTE} días</h2>
-          <GraficoProyeccion hoy={hoy} saldos={saldos} />
+          <GraficoProyeccion hoy={hoy} saldos={saldos} impuestos={datos.movimientos.filter((m) => m.tipo === "impuesto")} />
           <p className="mt-2 text-xs text-apagado">
             Saldo en pesos. Los pagos en dólares se convierten al tipo de cambio proyectado de cada fecha.
           </p>
@@ -72,8 +71,6 @@ export function VistaPanel() {
           <ListaAlertas alertas={alertas} />
         </div>
       </div>
-
-      <GraficoRangosImpuestos movimientos={datos.movimientos} />
 
       <div className="tarjeta mt-3.5">
         <h2 className="subtitulo">Próximos movimientos</h2>
