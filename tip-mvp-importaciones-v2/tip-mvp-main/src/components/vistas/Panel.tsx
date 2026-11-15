@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ListaAlertas } from "@/components/Alertas";
 import { useDatos } from "@/components/DatosProvider";
 import { GraficoProyeccion } from "@/components/Graficos";
+import { GraficoRangosImpuestos } from "@/components/GraficoRangosImpuestos";
 import { BotonEjemplo } from "@/components/BotonEjemplo";
 import { Cargando } from "@/components/Cargando";
 import { HORIZONTE } from "@/lib/tesoreria/proyeccion";
