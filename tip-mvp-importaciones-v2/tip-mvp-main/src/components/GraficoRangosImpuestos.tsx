@@ -48,7 +48,7 @@ export function GraficoRangosImpuestos({ movimientos }: { movimientos: Movimient
                         aria-label={`${m.concepto}, ${fechaCorta(m.fecha)}, ${fmtMonto(m.monto, m.moneda)}`}
                         onMouseEnter={() => setHoverId(m.id)} onMouseLeave={() => setHoverId(null)}
                         onFocus={() => setHoverId(m.id)} onBlur={() => setHoverId(null)}>
-                        {!extremo && <line x1={px} x2={px} y1="44" y2="134" stroke={activo ? "#263f68" : "#8292b1"} strokeWidth={activo ? "2.5" : "1.5"} strokeDasharray="4 4" />}
+                        {!extremo && activo && <line x1={px} x2={px} y1="44" y2="134" stroke="#263f68" strokeWidth="2.5" strokeDasharray="4 4" />}
                         <circle cx={px} cy={extremo && agrupado ? 44 : 68} r={activo ? 7 : 5} fill={activo ? "#263f68" : "#657b9e"} stroke="white" strokeWidth="2" />
                         <text x={px} y={extremo && agrupado ? 151 : 91} textAnchor="middle" className={`tax-svg-label ${activo ? "is-active" : ""}`}>{m.concepto.length > 18 ? `${m.concepto.slice(0,17)}…` : m.concepto}</text>
                         {activo && <g><rect x={Math.max(4,Math.min(px-84,532))} y="98" width="168" height="30" rx="6" fill="#172b49" /><text x={Math.max(88,Math.min(px,616))} y="117" textAnchor="middle" fill="white" fontSize="11">{m.concepto} · {fechaCorta(m.fecha)} · {fmtMonto(m.monto,m.moneda)}</text></g>}
